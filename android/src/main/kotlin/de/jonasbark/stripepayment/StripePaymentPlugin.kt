@@ -8,8 +8,9 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
+import io.flutter.embedding.engine.plugins
 
-class StripePaymentPlugin(private val stripeModule: StripeModule) : MethodCallHandler {
+class StripePaymentPlugin(private val stripeModule: StripeModule) : MethodCallHandler, FlutterPlugin {
 
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
@@ -74,5 +75,11 @@ class StripePaymentPlugin(private val stripeModule: StripeModule) : MethodCallHa
             val plugin = StripePaymentPlugin(stripeModule)
             channel.setMethodCallHandler(plugin)
         }
+    }
+
+    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "stripe_payment")
+        channel.setMethodCallHandler(this)
+        Factory.setup(this, flutterPluginBinding.binaryMessenger)
     }
 }
