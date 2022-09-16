@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import android.util.Log;
-
+import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.engine.FlutterEngine;
 /**
  * Created by remer on 11/8/17.
  */
 
-public class RedirectUriReceiver extends Activity {
+public class RedirectUriReceiver extends FlutterActivity {
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

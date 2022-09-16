@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-
+import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.engine.FlutterEngine;
 /**
  * Created by remer on 16/11/17.
  */
-public class OpenBrowserActivity extends Activity {
+public class OpenBrowserActivity extends FlutterActivity {
   final static String EXTRA_URL = "url";
 
   private String url;
